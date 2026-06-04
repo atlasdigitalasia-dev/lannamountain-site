@@ -1,0 +1,80 @@
+# Credentials & secrets
+agency-dashboard-backend/.env
+agency-dashboard-backend/tokens.json
+agency-dashboard-backend/*.json
+.fb_credentials.json
+
+# Backend (keep out of site repo)
+agency-dashboard-backend/node_modules/
+agency-dashboard-backend/data/
+
+# Deploy zips
+deploy-*.zip
+lanna-mountain-deploy.zip
+lanna-site-deploy.zip
+lannamountain-site.zip
+site-updates.zip
+ziC76nQU
+
+# Client & operational data
+clients/
+prospects/
+Daily cold call/
+Lead sheets/
+Sales/
+content-queues/
+gbp-posts/
+posts/
+
+# Build & utility scripts
+*.py
+build_audit_docx.js
+build_pdf.py
+gen_posts.py
+gen_templates.py
+baxford_seo_report.py
+check_logo.py
+add_client.py
+post_to_platforms.py
+py_out.txt
+post_log.jsonl
+fb_post_log.json
+
+# Misc
+*.pptx
+*.docx
+*.pdf
+logo_b64.txt
+logo_matched.jpg
+logo_matched_preview.png
+logo_preview_on_green.png
+lanna_mountain_fb_banner_maker.html
+fb_uploader.html
+fb_banner_*.jpg
+ai_voice_tradies.html
+social-hub.html
+content-calendar-apr2026.html
+content-calendar-2026-05.md
+social-templates-philosophy.md
+agency-dashboard-mvp.html
+cold-call-batch.skill.md
+monthly-social-posts.skill.md
+onboard-client.skill.md
+new-client.bat
+*.plugin
+netlify.toml
+deploy_clean/
+site-deploy/
+lanna-dialer/
+lanna-dialer-extension/
+client-configs/
+client-social-manager.plugin
+*.skill.md
+*.bat
+fix_brand_name.ps1
+
+# Templates
+template-*.png
+
+# Node
+node_modules/

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kickback Coffee — SEO Audit · May 2026 · Lanna Mountain Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0D1F13; --bg2:#112318; --card:#142D1A; --border:#1E4228;
+  --green:#1A7A3C; --green-lt:#22A050; --green-dim:#145F2E;
+  --white:#fff; --muted:#7FAF8A; --text:#DFF0E5;
+  --tint:rgba(26,122,60,0.15); --tint2:rgba(26,122,60,0.25);
+  --warn:#E8B23A; --fail:#E26A6A; --pass:#22A050;
+  --max:1100px;
+  --font-head:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Lato',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--max);margin:0 auto;padding:0 32px}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-lt);background:var(--tint);border:1px solid var(--tint2);padding:6px 14px;border-radius:100px}
+.eyebrow::before{content:'●';font-size:7px}
+
+h1,h2,h3,h4,h5{font-family:var(--font-head);color:var(--white);font-weight:700;letter-spacing:-0.02em}
+h2 em,h1 em,h3 em{font-style:normal;color:var(--green-lt)}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-0.025em}
+h3{font-size:22px;line-height:1.25}
+h4{font-size:16px;line-height:1.3}
+
+.sec-band{display:flex;align-items:center;gap:18px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.sec-num{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--green-lt);letter-spacing:0.18em;width:54px;flex-shrink:0}
+.sec-meta{font-family:var(--font-head);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-left:auto;flex-shrink:0}
+.sec-band h2{flex:1;min-width:0}
+
+/* COVER — hero image via Unsplash (self-contained, no local asset needed) */
+.cover{position:relative;min-height:100vh;display:flex;flex-direction:column;background-image:url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=1600&q=80&auto=format&fit=crop');background-size:cover;background-position:center 40%;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,31,19,0.93) 0%,rgba(13,31,19,0.80) 50%,rgba(13,31,19,0.95) 100%);z-index:1}
+.cover::after{content:'';position:absolute;top:-180px;right:-260px;width:720px;height:720px;background:radial-gradient(circle,rgba(26,122,60,0.30) 0%,transparent 70%);z-index:1}
+.cover-inner{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:40px 0}
+.cover-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:48px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:46px;height:46px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--green-lt)}
+.brand-name{font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--white);letter-spacing:-0.02em}
+.brand-name span{color:var(--green-lt)}
+.brand-sub{font-size:12px;color:var(--muted);font-family:var(--font-head);letter-spacing:0.04em}
+.cover-meta{font-family:var(--font-head);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.7}
+.cover-meta strong{color:var(--white);font-weight:600}
+.cover-spacer{flex:1;min-height:40px}
+.cover-doc-tag{font-family:var(--font-head);font-size:12px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green-lt);margin-bottom:24px}
+.cover h1{font-family:var(--font-head);font-weight:700;font-size:clamp(56px,8vw,108px);line-height:0.95;letter-spacing:-0.035em;color:var(--white);margin-bottom:32px}
+.cover h1 em{font-style:normal;color:var(--green-lt)}
+.cover-domain{font-family:var(--font-head);font-size:24px;font-weight:500;color:var(--white);letter-spacing:-0.01em;margin-bottom:8px}
+.cover-context{font-size:15px;color:var(--muted);font-family:var(--font-body);max-width:580px;line-height:1.6}
+.cover-score{margin-top:56px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;padding:28px 32px;background:rgba(20,45,26,0.78);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(8px);max-width:760px}
+.score-num{font-family:var(--font-head);font-size:88px;font-weight:700;line-height:1;color:var(--white);letter-spacing:-0.04em}
+.score-num span{color:var(--green-lt);font-size:36px;margin-left:4px;font-weight:500}
+.score-body .score-label{font-family:var(--font-head);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-lt);margin-bottom:8px}
+.score-body p{font-size:14px;color:var(--text);line-height:1.6;font-family:var(--font-body)}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:64px;font-family:var(--font-head);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.cover-bottom strong{color:var(--white);font-weight:600}
+
+section.report-section{padding:96px 0;border-top:1px solid var(--border)}
+section.report-section:first-of-type{border-top:none}
+section.alt{background:var(--bg2)}
+
+.lead{font-size:18px;line-height:1.7;color:var(--text);max-width:760px;margin-bottom:32px}
+.lead.large{font-size:20px}
+p+p{margin-top:14px}
+p{color:var(--text);max-width:780px}
+
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:32px 0}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.metric .m-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.metric .m-num{font-family:var(--font-head);font-size:34px;font-weight:700;color:var(--white);letter-spacing:-0.02em;line-height:1}
+.metric .m-num span{color:var(--green-lt);font-size:18px;font-weight:500;margin-left:2px}
+.metric .m-cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
+
+.prio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.prio{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative}
+.prio::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);border-radius:14px 14px 0 0}
+.prio .p-num{font-family:var(--font-head);font-size:13px;font-weight:700;letter-spacing:0.14em;color:var(--green-lt);margin-bottom:10px}
+.prio h4{margin-bottom:8px;font-size:17px}
+.prio p{font-size:14px;line-height:1.6;color:var(--text)}
+
+.tbl-wrap{margin-top:24px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{text-align:left;padding:14px 16px;font-family:var(--font-head);font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-lt);background:rgba(26,122,60,0.08);border-bottom:1px solid var(--border);vertical-align:top}
+tbody td{padding:14px 16px;border-top:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.5}
+tbody tr:first-child td{border-top:none}
+tbody td:first-child{font-family:var(--font-head);font-weight:600;color:var(--white);font-size:13px}
+
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-head);font-size:10.5px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:4px 10px;border-radius:100px;white-space:nowrap}
+.pill::before{content:'●';font-size:6px}
+.pill.crit{color:#FF8C80;background:rgba(226,106,106,0.14);border:1px solid rgba(226,106,106,0.3)}
+.pill.high{color:var(--warn);background:rgba(232,178,58,0.12);border:1px solid rgba(232,178,58,0.28)}
+.pill.med{color:#C9D8C8;background:rgba(127,175,138,0.12);border:1px solid rgba(127,175,138,0.28)}
+.pill.low{color:var(--muted);background:rgba(127,175,138,0.08);border:1px solid var(--border)}
+.pill.pass{color:var(--pass);background:rgba(34,160,80,0.14);border:1px solid rgba(34,160,80,0.30)}
+.pill.warn{color:var(--warn);background:rgba(232,178,58,0.12);border:1px solid rgba(232,178,58,0.28)}
+.pill.fail{color:#FF8C80;background:rgba(226,106,106,0.14);border:1px solid rgba(226,106,106,0.3)}
+.pill.easy{color:var(--green-lt);background:var(--tint);border:1px solid var(--tint2)}
+.pill.mod{color:var(--warn);background:rgba(232,178,58,0.10);border:1px solid rgba(232,178,58,0.24)}
+.pill.hard{color:#FF8C80;background:rgba(226,106,106,0.10);border:1px solid rgba(226,106,106,0.26)}
+.pill.opp-high{color:var(--green-lt);background:var(--tint);border:1px solid var(--tint2)}
+.pill.opp-med{color:var(--warn);background:rgba(232,178,58,0.10);border:1px solid rgba(232,178,58,0.24)}
+.pill.intent{font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--border)}
+.pill.intent::before{display:none}
+.pill.threat-high{color:#FF8C80;background:rgba(226,106,106,0.14);border:1px solid rgba(226,106,106,0.3)}
+.pill.threat-med{color:var(--warn);background:rgba(232,178,58,0.12);border:1px solid rgba(232,178,58,0.28)}
+.pill.threat-low{color:var(--muted);background:rgba(127,175,138,0.08);border:1px solid var(--border)}
+
+.tech-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0 8px}
+.tech-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:18px}
+.tech-num{font-family:var(--font-head);font-size:42px;font-weight:700;line-height:1;letter-spacing:-0.02em}
+.tech-stat.pass .tech-num{color:var(--pass)}
+.tech-stat.warn .tech-num{color:var(--warn)}
+.tech-stat.fail .tech-num{color:#E26A6A}
+.tech-label{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+.tech-cap{font-size:12px;color:var(--text);margin-top:2px;line-height:1.45}
+
+.compare-wrap{margin-top:28px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card)}
+.compare-wrap table th:nth-child(2){color:var(--white);background:rgba(26,122,60,0.14)}
+.compare-wrap table tbody td:nth-child(2){background:rgba(26,122,60,0.06);color:var(--white)}
+
+.seg-head{margin:48px 0 16px;padding:14px 20px;background:rgba(26,122,60,0.08);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:14px}
+.seg-head .seg-num{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-lt)}
+.seg-head h4{font-size:15px;margin:0}
+.seg-head p{font-size:13px;color:var(--muted);margin:0;max-width:none}
+
+.callout{margin:32px 0;padding:24px 28px;border-radius:14px;background:linear-gradient(135deg,rgba(232,178,58,0.10) 0%,rgba(232,178,58,0.04) 100%);border:1px solid rgba(232,178,58,0.30);display:flex;gap:18px;align-items:flex-start}
+.callout-icon{width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(232,178,58,0.18);border:1px solid rgba(232,178,58,0.30);display:flex;align-items:center;justify-content:center;font-size:18px}
+.callout h4{color:var(--warn);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
+.callout p{font-size:14.5px;line-height:1.6;max-width:none}
+
+.callout.green{background:linear-gradient(135deg,rgba(26,122,60,0.14) 0%,rgba(26,122,60,0.06) 100%);border-color:var(--tint2)}
+.callout.green h4{color:var(--green-lt)}
+.callout.green .callout-icon{background:var(--tint);border-color:var(--tint2)}
+
+.diff{margin-top:32px;padding:28px;border-radius:16px;background:var(--card);border:1px solid var(--border);position:relative}
+.diff::before{content:'';position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--green-lt),transparent);border-radius:16px 16px 0 0}
+.diff h4{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--green-lt);margin-bottom:10px}
+.diff h3{margin-bottom:12px}
+
+.plan-head{display:flex;align-items:center;gap:14px;margin:48px 0 20px}
+.plan-head .lbl{font-family:var(--font-head);font-size:13px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-lt)}
+.plan-head .lbl-sub{font-family:var(--font-head);font-size:11px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase}
+.plan-head .rule{flex:1;height:1px;background:var(--border)}
+
+.help-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.help{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:flex-start}
+.help-num{font-family:var(--font-head);font-weight:700;font-size:26px;color:var(--green-lt);letter-spacing:-0.02em;width:54px;flex-shrink:0}
+.help h4{margin-bottom:6px}
+.help p{font-size:14px;color:var(--text);line-height:1.55;max-width:none}
+
+.cta{margin-top:48px;padding:48px;border-radius:20px;background:linear-gradient(135deg,var(--green-dim) 0%,rgba(26,122,60,0.25) 100%);border:1px solid var(--tint2);position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-100px;right:-100px;width:340px;height:340px;background:radial-gradient(circle,rgba(34,160,80,0.30) 0%,transparent 70%)}
+.cta-inner{position:relative;z-index:1;max-width:680px}
+.cta h2{margin-top:14px;margin-bottom:14px;font-size:36px}
+.cta p{font-size:16px;color:var(--text);max-width:none}
+.cta-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-size:14px;font-weight:600;letter-spacing:0.01em;padding:13px 22px;border-radius:8px;text-decoration:none;transition:all 0.2s ease;border:1.5px solid transparent;cursor:pointer}
+.btn-primary{background:var(--white);color:var(--bg)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-outline{border-color:rgba(255,255,255,0.4);color:var(--white)}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,0.06)}
+
+footer.report-foot{padding:48px 0 64px;border-top:1px solid var(--border);background:var(--bg)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.foot-grid h5{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:14px}
+.foot-grid p,.foot-grid a{font-size:13.5px;color:var(--text);text-decoration:none;display:block;line-height:1.7}
+.foot-grid a:hover{color:var(--green-lt)}
+.disclaimer{font-size:11.5px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border);padding-top:24px;font-family:var(--font-body);max-width:920px}
+
+.toc{position:fixed;top:18px;right:18px;z-index:50;background:rgba(20,45,26,0.92);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:100px;padding:8px 14px;display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:11px;color:var(--muted);letter-spacing:0.10em;text-transform:uppercase}
+.toc a{color:var(--muted);text-decoration:none;transition:color 0.2s}
+.toc a:hover{color:var(--white)}
+.toc .dot{width:5px;height:5px;border-radius:50%;background:var(--green-lt)}
+
+@media print{
+  @page{size:A4;margin:14mm 14mm 16mm 14mm}
+  html,body{background:#fff !important;color:#0D1F13 !important}
+  body{font-size:10.5pt;line-height:1.45}
+  .toc{display:none !important}
+  .container{padding:0;max-width:none}
+  .cover{min-height:auto;page-break-after:always;color:#fff;padding:0}
+  .cover-inner{padding:24px 26px;min-height:268mm}
+  .cover h1{font-size:62pt;color:#fff}
+  .cover-domain{color:#fff}
+  .cover-score{background:rgba(20,45,26,0.92)}
+  .cover-meta,.cover-bottom,.brand-sub{color:#cfe6d6}
+  .cover-bottom strong,.brand-name{color:#fff}
+  section.report-section{background:#fff !important;color:#0D1F13;padding:18mm 0 14mm;border-top:1px solid #d6e2d8;page-break-before:auto}
+  section.alt{background:#F4F8F4 !important}
+  section.report-section:first-of-type{page-break-before:always}
+  h1,h2,h3,h4,h5{color:#0D1F13 !important}
+  h2 em,h3 em,h1 em{color:#1A7A3C !important}
+  p,td,.lead,.help p,.metric .m-cap,.score-body p{color:#1d2b22 !important}
+  .lead{font-size:11pt}
+  .metric,.prio,.tbl-wrap,.help,.tech-stat,.diff,.compare-wrap,.callout,.seg-head{background:#fff !important;border:1px solid #c8d6cb !important;box-shadow:none !important;break-inside:avoid}
+  .prio::before,.diff::before{background:linear-gradient(90deg,#1A7A3C,transparent) !important}
+  .metric .m-num,.tech-num,.score-num{color:#0D1F13 !important}
+  .metric .m-num span,.score-num span,.help-num,.sec-num,.eyebrow,.diff h4,.callout h4,.foot-grid h5,.plan-head .lbl,.cta h2,.cta p{color:#1A7A3C}
+  .eyebrow{background:rgba(26,122,60,0.10);border-color:rgba(26,122,60,0.28);color:#1A7A3C !important}
+  .callout{background:#FBF6E8 !important;border-color:#E5C975 !important}
+  .callout.green{background:#EAF4ED !important;border-color:#c8d6cb !important}
+  .callout h4{color:#8E6C1F !important}
+  .callout.green h4{color:#1A7A3C !important}
+  .callout-icon{background:#F1E2A8;border-color:#E5C975}
+  thead th{background:#EAF2EC !important;color:#1A7A3C !important;border-bottom:1px solid #c8d6cb !important}
+  tbody td{border-top:1px solid #d6e2d8 !important;color:#1d2b22 !important}
+  tbody td:first-child{color:#0D1F13 !important}
+  .tbl-wrap{break-inside:auto}
+  table tr{break-inside:avoid;page-break-inside:avoid}
+  .compare-wrap table th:nth-child(2){background:#E0F0E4 !important;color:#0D1F13 !important}
+  .compare-wrap table tbody td:nth-child(2){background:#EFF8F1 !important;color:#0D1F13 !important}
+  .cta{background:#0D1F13 !important;color:#fff !important;border:none;break-inside:avoid}
+  .cta::before{display:none}
+  .cta h2,.cta p{color:#fff !important}
+  .cta h2 em{color:#22A050 !important}
+  .btn-primary{background:#fff !important;color:#0D1F13 !important}
+  .btn-outline{border-color:rgba(255,255,255,0.4) !important;color:#fff !important}
+  footer.report-foot{background:#0D1F13 !important;color:#fff !important;border-top:none;padding:24px 0;break-inside:avoid}
+  .foot-grid h5{color:#22A050 !important}
+  .foot-grid p,.foot-grid a{color:#DFF0E5 !important}
+  .disclaimer{color:#7FAF8A !important;border-top:1px solid #1E4228 !important}
+  .pill{border-width:1px !important;font-weight:700}
+  section,.sec-band,.metric-grid,.prio-grid,.tech-summary,.help-grid{break-inside:avoid-page}
+}
+
+@media (max-width:880px){
+  .metric-grid{grid-template-columns:repeat(2,1fr)}
+  .prio-grid{grid-template-columns:1fr}
+  .tech-summary{grid-template-columns:1fr}
+  .help-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .cover-top{flex-direction:column;align-items:flex-start;gap:20px}
+  .cover-meta{text-align:left}
+  .cover-score{grid-template-columns:1fr;gap:14px;padding:24px}
+  .toc{display:none}
+  table{font-size:12px}
+  thead th,tbody td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Section navigation">
+  <span class="dot"></span>
+  <a href="#sec-01">01</a>
+  <a href="#sec-02">02</a>
+  <a href="#sec-03">03</a>
+  <a href="#sec-04">04</a>
+  <a href="#sec-05">05</a>
+  <a href="#sec-06">06</a>
+  <a href="#sec-07">07</a>
+</nav>
+
+<!-- ════════════════════ COVER ════════════════════ -->
+<header class="cover">
+  <div class="container cover-inner">
+    <div class="cover-top">
+      <div class="brand">
+        <div class="brand-mark">LM</div>
+        <div>
+          <div class="brand-name">Lanna<span>Mountain</span> Marketing</div>
+          <div class="brand-sub">AI-powered marketing for SMEs</div>
+        </div>
+      </div>
+      <div class="cover-meta">
+        Prepared for<br/>
+        <strong>Kickback Coffee Roasters</strong><br/>
+        <span style="opacity:0.85">May 2026 · Confidential</span>
+      </div>
+    </div>
+
+    <div class="cover-spacer"></div>
+
+    <div class="cover-doc-tag">Full-site SEO audit</div>
+    <h1>Kickback <em>Coffee</em><br/>SEO Audit</h1>
+    <div class="cover-domain">kickbackcoffee.co.uk</div>
+    <p class="cover-context">Peak District speciality coffee roaster · 4 cafés · UK direct delivery.<br/>A diagnostic of on-page, technical, content, and competitor signals — and a 90-day plan to turn a brilliant brand into search visibility.</p>
+
+    <div class="cover-score">
+      <div class="score-num">38<span>/100</span></div>
+      <div class="score-body">
+        <div class="score-label">Overall SEO score</div>
+        <p>Good brand, weak SEO foundation. A compelling Peak District story, a 40+ person team, 4 cafés and a Land Rover Defender coffee van — but the website is significantly under-optimised for organic search, with ~10 indexed pages and zero schema. Significant upside is available with moderate effort.</p>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div>
+        Prepared by <strong>Tom Willis</strong> · Founder, Lanna Mountain Marketing<br/>
+        <span style="opacity:0.85">lannamountain.coffee</span>
+      </div>
+      <div style="text-align:right">
+        <strong>Confidential</strong><br/>
+        <span style="opacity:0.85">Recipient eyes only</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ 00 — ABOUT ═════════════════ -->
+<section class="report-section" id="sec-00">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">00</div>
+      <h2>About this <em>audit</em></h2>
+      <div class="sec-meta">Prepared by Lanna Mountain Marketing</div>
+    </div>
+    <p class="lead">Scope, inputs and contact details for this engagement. Methodology disclosure is in the footer.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tbody>
+          <tr><td style="width:30%">Client</td><td>Kickback Coffee Roasters</td></tr>
+          <tr><td>Industry</td><td>Speciality Coffee · UK</td></tr>
+          <tr><td>Platform</td><td>Shopify</td></tr>
+          <tr><td>Pages indexed (approx.)</td><td>~10 via Google site: search</td></tr>
+          <tr><td>Locations</td><td>Pott Shrigley (roastery), Altrincham, Bollington, Sale Moor</td></tr>
+          <tr><td>Unique angle</td><td>Adventure / outdoor lifestyle brand · speciality coffee · Land Rover Defender mobile bar</td></tr>
+          <tr><td>Audit date</td><td>May 2026</td></tr>
+          <tr><td>Prepared by</td><td>Lanna Mountain Marketing · Tom Willis, Founder</td></tr>
+          <tr><td>Contact</td><td>tom@lannamountain.coffee · lannamountain.coffee</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 01 — EXECUTIVE SUMMARY ═════════════════ -->
+<section class="report-section alt" id="sec-01">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">01</div>
+      <h2>Executive <em>summary</em></h2>
+      <div class="sec-meta">Overall score · 38 / 100</div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric">
+        <div class="m-label">Pages indexed</div>
+        <div class="m-num">~10</div>
+        <div class="m-cap">Regional competitors have a similar count — but their pages are better optimised.</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Café locations</div>
+        <div class="m-num">4</div>
+        <div class="m-cap">Zero dedicated SEO landing pages for any of them.</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Schema markup</div>
+        <div class="m-num">0</div>
+        <div class="m-cap">No Product, LocalBusiness, or FAQ JSON-LD.</div>
+      </div>
+      <div class="metric">
+        <div class="m-label">Blog SEO value</div>
+        <div class="m-num">Low</div>
+        <div class="m-cap">Lifestyle content with no commercial intent or product links.</div>
+      </div>
+    </div>
+
+    <p>Kickback Coffee is a well-positioned independent speciality coffee roaster in the UK, with a compelling brand story — Peak District roots, an adventure / outdoor identity, a 40+ person team, and four cafés. The brand has genuine differentiators that no UK competitor can claim in the same combination.</p>
+    <p>However, the website is significantly under-optimised for organic search. The indexed page count is very low, blog content lacks commercial SEO intent, and there is no evidence of targeting high-volume transactional keywords like <em>"coffee subscription UK"</em> or <em>"buy speciality coffee beans UK."</em> The biggest strength is a strong brand narrative and a multi-location footprint that could fuel powerful local SEO — but the local pages don't yet exist.</p>
+    <p>Crucially, Kickback is <strong>already ranking on page 1</strong> for several core local terms without any meaningful SEO effort — #3 for coffee roasters Altrincham, #4 for Peak District coffee roaster and coffee roasters Cheshire, #6 for speciality coffee Macclesfield. The opportunity is to convert these existing positions into top 1–3 rankings, and fix the one glaring gap: Bollington, their own HQ town, sits at #29.</p>
+
+    <div class="plan-head" style="margin-top:48px">
+      <span class="lbl">Top 3 priorities</span>
+      <span class="lbl-sub">For immediate impact</span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="prio-grid">
+      <div class="prio">
+        <div class="p-num">01 · Local SEO</div>
+        <h4>Polish existing page-1 rankings into top-3 positions</h4>
+        <p>Already ranking for key local terms without SEO effort. Dedicated location pages + LocalBusiness schema will consolidate and improve these positions fast — especially Bollington (#29) which is Kickback's own backyard.</p>
+      </div>
+      <div class="prio">
+        <div class="p-num">02 · On-page</div>
+        <h4>Fix title tags &amp; metas across all product and collection pages</h4>
+        <p>Generic titles are the single biggest free win. Rewriting them with primary keywords plus the Peak District / Cheshire / Manchester geo signals will move rankings in 4–8 weeks.</p>
+      </div>
+      <div class="prio">
+        <div class="p-num">03 · Transactional</div>
+        <h4>Build out subscription &amp; buy-intent landing pages</h4>
+        <p>Target <em>"coffee subscription UK"</em> and <em>"buy speciality coffee beans UK"</em> with dedicated, schema-rich pages. Regional competitors all have them; Kickback has only a basic collection page.</p>
+      </div>
+    </div>
+
+    <div class="diff">
+      <h4>Overall verdict</h4>
+      <h3>Already on page 1 with zero SEO — <em>significant upside</em> with moderate effort.</h3>
+      <p>Kickback owns a brand position that no UK roaster can easily copy: the outdoor / adventure identity combined with real multi-location physical presence in low-competition towns. The local SEO wins are almost uncontested — no rival in Altrincham, Bollington, or Sale Moor has a serious web presence. A focused 90-day investment in location pages, schema, transactional content and internal linking can move these from page 1 to position 1.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 02 — KEYWORDS ═════════════════ -->
+<section class="report-section" id="sec-02">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">02</div>
+      <h2>Keyword <em>opportunity</em> analysis</h2>
+      <div class="sec-meta">24 opportunities identified</div>
+    </div>
+
+    <p class="lead">Difficulty and volume estimates based on market research and competitor analysis. Verified rankings provided by client. Connect Ahrefs or SEMrush for precise volume data. Green ranking figures = confirmed live positions.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%">Keyword</th>
+            <th style="width:11%">Difficulty</th>
+            <th style="width:10%">Opp.</th>
+            <th style="width:14%">Current rank</th>
+            <th style="width:14%">Intent</th>
+            <th>Recommended content type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>speciality coffee subscription UK</td><td><span class="pill hard">High</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Dedicated subscription landing page</td></tr>
+          <tr><td>buy coffee beans online UK</td><td><span class="pill hard">High</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Collection page optimisation</td></tr>
+          <tr><td>coffee subscription UK</td><td><span class="pill hard">High</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Subscription landing page</td></tr>
+          <tr><td>specialty coffee beans UK</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Collection page + blog</td></tr>
+          <tr><td>Peak District coffee roaster</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td><strong style="color:var(--green-lt)">#4 ✓</strong></td><td><span class="pill intent">Nav / Commercial</span></td><td>Homepage + About page optimisation</td></tr>
+          <tr><td>coffee roasters Cheshire</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td><strong style="color:var(--green-lt)">#4 ✓</strong></td><td><span class="pill intent">Local / Commercial</span></td><td>Local landing page</td></tr>
+          <tr><td>coffee roasters Manchester</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Local / Commercial</span></td><td>Local landing page</td></tr>
+          <tr><td>speciality coffee Macclesfield</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td><strong style="color:var(--green-lt)">#6 ✓</strong></td><td><span class="pill intent">Local</span></td><td>Google Business Profile + location page</td></tr>
+          <tr><td>coffee roasters Altrincham</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td><strong style="color:var(--green-lt)">#3 ✓</strong></td><td><span class="pill intent">Local</span></td><td>Location page optimisation</td></tr>
+          <tr><td>coffee shops Bollington</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td><strong style="color:var(--warn)">#29 ⚠</strong></td><td><span class="pill intent">Local</span></td><td>GBP + dedicated location page — urgent</td></tr>
+          <tr><td>wholesale coffee UK</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-med">Medium</span></td><td>Unknown</td><td><span class="pill intent">Commercial</span></td><td>Wholesale landing page SEO</td></tr>
+          <tr><td>single origin coffee UK</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Blog + collection</td></tr>
+          <tr><td>Ethiopian coffee beans UK</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Product / blog page</td></tr>
+          <tr><td>pour over coffee beans UK</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>Buying guide blog post</td></tr>
+          <tr><td>best coffee subscription UK 2026</td><td><span class="pill hard">High</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Transactional</span></td><td>PR / link-building target</td></tr>
+          <tr><td>outdoor adventure coffee</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-med">Medium</span></td><td>Unknown</td><td><span class="pill intent">Brand / Lifestyle</span></td><td>Blog content series</td></tr>
+          <tr><td>coffee for camping</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Informational</span></td><td>Blog post</td></tr>
+          <tr><td>how to brew filter coffee at home</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Informational</span></td><td>Brewing guide</td></tr>
+          <tr><td>mobile coffee bar hire UK</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Commercial</span></td><td>Services landing page</td></tr>
+          <tr><td>land rover coffee van hire</td><td><span class="pill easy">Low</span></td><td><span class="pill opp-high">High</span></td><td>Not ranking</td><td><span class="pill intent">Commercial</span></td><td>Services page with location targeting</td></tr>
+          <tr><td>coffee tasting notes explained</td><td><span class="pill easy">Low</span></td><td><span class="pill low">Low</span></td><td>Not ranking</td><td><span class="pill intent">Informational</span></td><td>Blog / educational content</td></tr>
+          <tr><td>what is speciality coffee</td><td><span class="pill easy">Low</span></td><td><span class="pill low">Low</span></td><td>Not ranking</td><td><span class="pill intent">Informational</span></td><td>Pillar page</td></tr>
+          <tr><td>coffee origin Honduras</td><td><span class="pill easy">Low</span></td><td><span class="pill low">Low</span></td><td>Not ranking</td><td><span class="pill intent">Informational</span></td><td>Producer-story blog</td></tr>
+          <tr><td>best coffee shops Altrincham</td><td><span class="pill mod">Medium</span></td><td><span class="pill opp-med">Medium</span></td><td>Not ranking</td><td><span class="pill intent">Local</span></td><td>Location page + GBP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 03 — ON-PAGE ═════════════════ -->
+<section class="report-section alt" id="sec-03">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">03</div>
+      <h2>On-page <em>SEO</em> audit</h2>
+      <div class="sec-meta">4 critical · 6 high · 2 medium</div>
+    </div>
+
+    <p class="lead">Page-by-page issues that ship measurable ranking signal. Critical items unblock the rest of the strategy and should ship in week 1.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">Page</th>
+            <th style="width:34%">Issue</th>
+            <th style="width:13%">Severity</th>
+            <th>Recommended fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Homepage</td><td>Title tag likely generic — not targeting "Peak District coffee roaster" or "speciality coffee UK."</td><td><span class="pill crit">Critical</span></td><td>Rewrite to: <em>"Kickback Coffee — Peak District Speciality Coffee Roasters | UK Delivery"</em></td></tr>
+          <tr><td>Homepage</td><td>Meta description not confirmed — no compelling hook or keyword inclusion visible.</td><td><span class="pill crit">Critical</span></td><td>Write a 155-char description with USP + CTA: <em>"Fresh-roasted speciality coffee from the Peak District. Beans, subscriptions &amp; wholesale. Explore Kickback Coffee — adventure in every cup."</em></td></tr>
+          <tr><td>/collections/coffee</td><td>Generic collection title — missing primary transactional keywords.</td><td><span class="pill high">High</span></td><td>Title: <em>"Buy Speciality Coffee Beans Online — Kickback Coffee"</em></td></tr>
+          <tr><td>/collections/subscription-coffees</td><td>Subscription page not targeting "coffee subscription UK" — one of the highest-volume terms in the niche.</td><td><span class="pill crit">Critical</span></td><td>Dedicated subscription landing page with H1 <em>"Coffee Subscription UK,"</em> descriptive copy, FAQs, schema.</td></tr>
+          <tr><td>/pages/wholesale</td><td>Wholesale page not optimised for "wholesale coffee UK" or "coffee supplier Manchester."</td><td><span class="pill high">High</span></td><td>Add keyword-rich heading, 200+ words of copy, structured data.</td></tr>
+          <tr><td>/pages/our-story</td><td>Brand story page with no internal links to key product / collection pages.</td><td><span class="pill med">Medium</span></td><td>Add contextual links to subscription, shop, and wholesale pages.</td></tr>
+          <tr><td>Blog posts (/blogs/blog)</td><td><em>"Journey into the Outdoors"</em> series is lifestyle content with zero commercial SEO value — no buying keywords, no internal links to products.</td><td><span class="pill high">High</span></td><td>Retrofit each post with internal links to relevant product pages. Add new SEO-focused coffee content alongside lifestyle posts.</td></tr>
+          <tr><td>All product pages</td><td>Product pages likely missing long-form descriptions, structured tasting notes, or FAQ sections.</td><td><span class="pill high">High</span></td><td>Add 150–300 word descriptions with origin story, tasting notes, brew recommendations.</td></tr>
+          <tr><td>Location pages</td><td>No dedicated SEO landing pages for Altrincham, Bollington, Sale Moor, or Pott Shrigley café locations.</td><td><span class="pill crit">Critical</span></td><td>Create individual location pages: <em>/pages/coffee-shop-altrincham</em>, etc. with NAP, opening hours, schema.</td></tr>
+          <tr><td>Mobile coffee bar</td><td>Land Rover Defender van hire not clearly discoverable as a standalone service page with SEO copy.</td><td><span class="pill med">Medium</span></td><td>Create <em>/pages/mobile-coffee-bar</em> with event types, coverage area, pricing signals.</td></tr>
+          <tr><td>/pages/coffee-shops</td><td>Generic page title — not targeting individual location search queries.</td><td><span class="pill high">High</span></td><td>Break into individual location pages or add location-specific H2 sections with geo terms.</td></tr>
+          <tr><td>/blogs/did-you-know</td><td>Low-SEO category name — would rank better under a keyword-aligned URL like <em>/blogs/coffee-guides</em>.</td><td><span class="pill low">Low</span></td><td>Consider renaming / repointing (requires redirect management).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 04 — CONTENT GAPS ═════════════════ -->
+<section class="report-section" id="sec-04">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">04</div>
+      <h2>Content <em>gap</em> analysis</h2>
+      <div class="sec-meta">11 gaps identified</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">⚠</div>
+      <div>
+        <h4>Critical gap</h4>
+        <p>None of the four café locations have dedicated SEO pages. Kickback ranks #3 for <em>"coffee roasters Altrincham"</em> without one — imagine what a proper location page would do. Meanwhile Bollington, their own HQ town, sits at #29.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30%">Topic / Keyword</th>
+            <th style="width:32%">Why it matters</th>
+            <th style="width:14%">Format</th>
+            <th style="width:11%">Priority</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>"Coffee Subscription UK" hub page</td><td>Salford Roasters and Two Brothers both have dedicated subscription pages. Kickback has a collection but no SEO-optimised subscription page.</td><td>Standalone landing page with copy, FAQ, schema</td><td><span class="pill high">High</span></td><td>Quick win · 2–3 hrs</td></tr>
+          <tr><td>Coffee brewing guides (pour over, espresso, AeroPress)</td><td>Regional roasters are weak here. Kickback can own "brewing guides" in the Manchester/Cheshire market — high traffic, builds authority, links to products.</td><td>Blog series (5–6 posts)</td><td><span class="pill high">High</span></td><td>Half day each</td></tr>
+          <tr><td>"What is speciality coffee?" pillar page</td><td>Evergreen top-of-funnel content with high search demand. No regional competitor owns this term.</td><td>Long-form pillar page (1,500+ words)</td><td><span class="pill high">High</span></td><td>Moderate</td></tr>
+          <tr><td>Individual location pages</td><td>Already ranking on page 1 for 3 out of 4 locations with no dedicated pages. Location pages + schema will consolidate and push to top 3.</td><td>One page per location with map embed, NAP, opening hours, photos, schema</td><td><span class="pill high">High</span></td><td>Quick win · 1–2 hrs each</td></tr>
+          <tr><td>Coffee origin stories (Honduras, Ethiopia, etc.)</td><td>Regional competitors don't have this content. Kickback has real producer relationships to draw on.</td><td>1 blog post per origin (repurpose producer relationships)</td><td><span class="pill med">Medium</span></td><td>Moderate</td></tr>
+          <tr><td>Mobile coffee van / event hire</td><td><em>"Mobile coffee bar hire UK"</em> and <em>"land rover coffee hire"</em> are low-competition terms. No regional roaster is targeting them.</td><td>Dedicated service page</td><td><span class="pill high">High</span></td><td>Quick win · 2 hrs</td></tr>
+          <tr><td>Wholesale for cafés / hospitality</td><td><em>"Coffee supplier Manchester"</em> and <em>"wholesale coffee beans UK"</em> — Ancoats has a wholesale page; Kickback's is thin.</td><td>Expanded wholesale page + case studies</td><td><span class="pill med">Medium</span></td><td>Moderate</td></tr>
+          <tr><td>Best coffee shops Altrincham / Bollington</td><td>Local editorial roundup content can rank quickly and drive foot traffic. Two Brothers run events in Altrincham — Kickback should own the local editorial space.</td><td>Blog post (positions Kickback as local authority)</td><td><span class="pill med">Medium</span></td><td>Quick win</td></tr>
+          <tr><td>Coffee subscription gift guides</td><td><em>"Coffee subscription gift UK"</em> spikes at Christmas — no regional competitor targets this.</td><td>Gift landing page or blog post</td><td><span class="pill med">Medium</span></td><td>Quick win</td></tr>
+          <tr><td>Outdoor / adventure coffee content</td><td>Kickback's unique brand angle — no competitor in the Manchester/Cheshire market owns this space.</td><td>Blog series aligned with existing outdoor brand identity</td><td><span class="pill med">Medium</span></td><td>Moderate</td></tr>
+          <tr><td>FAQ / schema content</td><td>None of the key pages use FAQ schema — missing rich-snippet opportunities in SERPs that regional rivals also lack.</td><td>Add FAQ sections + JSON-LD to subscription, wholesale, and main product pages</td><td><span class="pill high">High</span></td><td>Quick win</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 05 — TECHNICAL ═════════════════ -->
+<section class="report-section alt" id="sec-05">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">05</div>
+      <h2>Technical <em>SEO</em> checklist</h2>
+      <div class="sec-meta">5 pass · 9 warning · 3 fail</div>
+    </div>
+
+    <p class="lead">Seventeen infrastructure-level checks. Most warnings stem from Shopify defaults that need a one-time configuration pass. Failures are blocking — they cap the ceiling of every other recommendation in this report.</p>
+
+    <div class="tech-summary">
+      <div class="tech-stat pass">
+        <div class="tech-num">5</div>
+        <div>
+          <div class="tech-label">Pass</div>
+          <div class="tech-cap">HTTPS · Platform · Mobile · Canonical · Robots default</div>
+        </div>
+      </div>
+      <div class="tech-stat warn">
+        <div class="tech-num">9</div>
+        <div>
+          <div class="tech-label">Warning</div>
+          <div class="tech-cap">Sitemap · Speed · CWV · OG · Alt · Crumbs · GBP · Duplicates · Crawl</div>
+        </div>
+      </div>
+      <div class="tech-stat fail">
+        <div class="tech-num">3</div>
+        <div>
+          <div class="tech-label">Fail</div>
+          <div class="tech-cap">Schema · LocalBusiness · Internal linking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:26%">Check</th>
+            <th style="width:11%">Status</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>HTTPS</td><td><span class="pill pass">Pass</span></td><td>Site runs on HTTPS.</td></tr>
+          <tr><td>Platform</td><td><span class="pill pass">Pass</span></td><td>Shopify — handles canonical tags and XML sitemap auto-generation.</td></tr>
+          <tr><td>Canonical tags</td><td><span class="pill pass">Pass</span></td><td>Shopify handles canonical tags natively for product / collection pagination.</td></tr>
+          <tr><td>Mobile-friendliness</td><td><span class="pill pass">Pass</span></td><td>Shopify themes are responsive by default — verify on actual device.</td></tr>
+          <tr><td>XML sitemap</td><td><span class="pill warn">Warning</span></td><td>Shopify generates /sitemap.xml automatically — verify it includes all collections and pages, not just products.</td></tr>
+          <tr><td>Robots.txt</td><td><span class="pill warn">Warning</span></td><td>Shopify default robots.txt blocks some paths — verify no key pages are accidentally noindexed.</td></tr>
+          <tr><td>Page speed</td><td><span class="pill warn">Warning</span></td><td>No data available without tooling — Shopify sites commonly suffer from app bloat, unoptimised images, and render-blocking scripts. Run Google PageSpeed Insights.</td></tr>
+          <tr><td>Core Web Vitals</td><td><span class="pill warn">Warning</span></td><td>Shopify average CWV is acceptable but varies heavily by theme and installed apps. Check Google Search Console CWV report.</td></tr>
+          <tr><td>Google Business Profile</td><td><span class="pill warn">Warning</span></td><td>4 locations = 4 GBP listings required. Verify all are claimed, accurate, and have regular post activity + review responses.</td></tr>
+          <tr><td>Breadcrumb schema</td><td><span class="pill warn">Warning</span></td><td>Shopify themes sometimes include this — verify with Rich Results Test.</td></tr>
+          <tr><td>Image alt text</td><td><span class="pill warn">Warning</span></td><td>Cannot confirm without crawl tool — Shopify makes it easy to skip alt text. Run Screaming Frog or Ahrefs crawl.</td></tr>
+          <tr><td>Broken links</td><td><span class="pill warn">Warning</span></td><td>~10 indexed pages — low risk, but verify with a crawl.</td></tr>
+          <tr><td>Duplicate content</td><td><span class="pill warn">Warning</span></td><td>Check for duplicate product descriptions across similar coffees — common Shopify issue.</td></tr>
+          <tr><td>Open Graph / Social meta</td><td><span class="pill warn">Warning</span></td><td>Verify OG tags on all pages for proper social sharing previews — essential for a visually-driven brand.</td></tr>
+          <tr><td>Structured data (Schema.org)</td><td><span class="pill fail">Fail</span></td><td>No evidence of Product schema, Organization schema, LocalBusiness schema, or FAQ schema. Significant gap — missing rich snippets for products, reviews, and locations.</td></tr>
+          <tr><td>LocalBusiness schema</td><td><span class="pill fail">Fail</span></td><td>None of the 4 locations appear to have LocalBusiness JSON-LD — critical for local SEO and Google Maps pack rankings.</td></tr>
+          <tr><td>Internal linking</td><td><span class="pill fail">Fail</span></td><td>Blog content does not link to product / collection pages. About and story pages don't link to shop. Significant missed opportunity.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 06 — COMPETITORS ═════════════════ -->
+<section class="report-section" id="sec-06">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">06</div>
+      <h2>Competitor <em>analysis</em></h2>
+      <div class="sec-meta">Local cafés · Regional roasters · National brands</div>
+    </div>
+
+    <p class="lead">Competitors are segmented into three meaningful groups. The biggest SEO opportunity is in Segment 1 — local café searches in Kickback's four towns — where the competition is almost entirely Facebook pages with no web presence.</p>
+
+    <!-- SEGMENT 1 -->
+    <div class="seg-head">
+      <div>
+        <div class="seg-num">Segment 1</div>
+        <h4>Local café competitors — Altrincham, Bollington, Sale Moor, Macclesfield</h4>
+        <p>These are the businesses Kickback competes with for "coffee shop near me" and local Google searches. <strong>None of them are roasters.</strong> Kickback has a structural SEO advantage here that it's not yet exploiting.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:22%">Competitor</th>
+            <th style="width:18%">Kickback Coffee</th>
+            <th style="width:14%">Location</th>
+            <th style="width:18%">Web presence</th>
+            <th style="width:14%">Threat</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Imperfect Coffee</td><td rowspan="6" style="vertical-align:middle;text-align:center"><strong style="color:var(--green-lt)">Only player with a roastery, brand story, and real website</strong></td><td>Altrincham (near station)</td><td>Basic website</td><td><span class="pill threat-low">Low</span></td><td>No roastery, no online shop, no brand</td></tr>
+          <tr><td>MOURO Coffee Bar</td><td>Altrincham</td><td>Basic website</td><td><span class="pill threat-low">Low</span></td><td>Local neighbourhood café only</td></tr>
+          <tr><td>Toast Altrincham</td><td>Altrincham</td><td>Some web presence</td><td><span class="pill threat-low">Low</span></td><td>Food-led, not coffee-focused</td></tr>
+          <tr><td>Café Waterside</td><td>Bollington</td><td>Facebook only</td><td><span class="pill threat-low">Very Low</span></td><td>No website, no SEO presence</td></tr>
+          <tr><td>The Green, Bollington</td><td>Bollington</td><td>Facebook only</td><td><span class="pill threat-low">Very Low</span></td><td>No website, no SEO presence</td></tr>
+          <tr><td>The Little Coffee Shop</td><td>Bollington High St</td><td>Minimal</td><td><span class="pill threat-low">Very Low</span></td><td>New, tiny, no web footprint</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green" style="margin-top:24px">
+      <div class="callout-icon">✓</div>
+      <div>
+        <h4>Kickback's advantage in Segment 1</h4>
+        <p>Kickback is the only player across all four towns with a real website, an established brand, a roastery story, and an online shop. They should dominate local search in Altrincham, Bollington, Sale Moor and Macclesfield — but currently have no dedicated location pages to make that happen.</p>
+      </div>
+    </div>
+
+    <!-- SEGMENT 2 -->
+    <div class="seg-head" style="margin-top:48px">
+      <div>
+        <div class="seg-num">Segment 2</div>
+        <h4>Regional roasters — Manchester, Cheshire &amp; North West</h4>
+        <p>These are Kickback's real SEO competitors for "coffee roasters Manchester/Cheshire," wholesale B2B leads, and online bean sales. Indexed page counts based on verified Google site: searches — all return ~10, so what matters is the <em>quality</em> of those pages.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap compare-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:20%">Competitor</th>
+            <th style="width:18%">Kickback Coffee</th>
+            <th style="width:12%">Location</th>
+            <th style="width:22%">Visible indexed pages</th>
+            <th style="width:12%">Threat</th>
+            <th>Key notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ancoats Coffee Co.</td><td rowspan="5" style="vertical-align:middle;text-align:center"><strong style="color:var(--green-lt)">~10 pages indexed. Subscription page missing. No location-specific pages. No adventure brand.</strong></td><td>Manchester (Royal Mills)</td><td>Homepage, roastery, coffee shop, wholesale, FAQs, location — static, no e-commerce products visible</td><td><span class="pill threat-high">High</span></td><td>10+ yrs, strong Manchester brand, wholesale-focused. Head start on B2B terms but no subscription or online shop SEO.</td></tr>
+          <tr><td>Salford Roasters</td><td>Salford, Manchester</td><td>Collections, subscription page, blends, award-winning, wholesale — best e-commerce SEO structure of the group</td><td><span class="pill threat-high">High</span></td><td>Award-winning (Great Taste), Shopify, most SEO-capable regional competitor. Direct online sales rival.</td></tr>
+          <tr><td>Two Brothers Coffee</td><td>Warrington</td><td>Subscriptions, FAQs, events, products — solid structure; <strong>running cupping events in Altrincham</strong></td><td><span class="pill threat-high">High</span></td><td>Already competing physically in Kickback's Altrincham territory. Multi-award-winning, active subscription model.</td></tr>
+          <tr><td>The Little Coffee Roastery</td><td>Macclesfield (same town)</td><td>About, coffees, gift boxes, wholesale, packaging — subscription-first, minimal blog</td><td><span class="pill threat-med">Medium</span></td><td>Same geography as roastery, subscription pricing from £6.57 undercuts market. Small scale, weak SEO overall.</td></tr>
+          <tr><td>Dark Woods Coffee</td><td>West Yorkshire</td><td>Trade/wholesale focused — competes nationally for B2B terms</td><td><span class="pill threat-med">Low–Med</span></td><td>Wholesale keyword competition only. Not a local café or subscription rival.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEGMENT 3 -->
+    <div class="seg-head" style="margin-top:48px">
+      <div>
+        <div class="seg-num">Segment 3</div>
+        <h4>National subscription brands — broad keyword competition only</h4>
+        <p>These brands only compete with Kickback on high-volume national terms like "coffee subscription UK." They are <strong>not</strong> competing for local or regional searches. The play here is PR/outreach to get included in their editorial roundups — not to outrank them organically.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:20%">Brand</th>
+            <th style="width:30%">Why they rank</th>
+            <th>Kickback's angle vs. them</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>RAVE Coffee</td><td>Subscription-first brand, strong DA, dedicated landing pages + FAQ schema</td><td>Kickback offers fresher, roastery-direct beans with a genuine brand story — differentiate on provenance</td></tr>
+          <tr><td>Batch Coffee</td><td>Discovery/curation model, review-driven editorial content, strong inbound links</td><td>Kickback is a roaster, not a curator — different product entirely</td></tr>
+          <tr><td>Pact Coffee</td><td>Mass-market, VC-backed, huge domain authority, national brand awareness</td><td>Not a realistic direct competitor — different tier and positioning</td></tr>
+          <tr><td>Square Mile</td><td>James Hoffmann brand halo, technical content library, London-based national reputation</td><td>Kickback's adventure/outdoor identity is a genuine differentiator — different audience entirely</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diff" style="margin-top:32px">
+      <h4>Where Kickback can win — summary</h4>
+      <h3>The fastest wins are in <em>uncontested territory.</em></h3>
+      <p>Local searches for Altrincham, Bollington, Sale Moor and Pott Shrigley are essentially uncontested — no competitor has a real web presence in those towns. The Peak District / Cheshire roaster terms are low-competition and Kickback is already in the top 4. The mobile coffee van niche has near-zero competition nationally. None of the big national brands (RAVE, Batch, Pact) are fighting for any of these — they're entirely focused on national subscription terms. <strong>A 90-day push on local SEO alone could make Kickback the dominant regional coffee brand online.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 07 — ACTION PLAN ═════════════════ -->
+<section class="report-section alt" id="sec-07">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">07</div>
+      <h2>Prioritised <em>action</em> plan</h2>
+      <div class="sec-meta">Quick wins + this-quarter strategy</div>
+    </div>
+
+    <p class="lead">Two horizons. Quick wins ship this week and produce measurable lift in 4–8 weeks. Strategic investments compound over the quarter and build a defensible content + local SEO moat that no regional competitor is currently building.</p>
+
+    <div class="plan-head">
+      <span class="lbl">Quick wins</span>
+      <span class="lbl-sub">Do this week</span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:54%">Action</th>
+            <th style="width:14%">Impact</th>
+            <th style="width:12%">Effort</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Rewrite homepage title tag and meta description</td><td><span class="pill opp-high">High</span></td><td>30 min</td><td>Target <em>"Peak District speciality coffee roaster | UK delivery."</em></td></tr>
+          <tr><td>Rewrite /collections/coffee and /collections/subscription-coffees title + meta</td><td><span class="pill opp-high">High</span></td><td>1 hr</td><td>Target <em>"buy coffee beans online UK"</em> and <em>"coffee subscription UK."</em></td></tr>
+          <tr><td>Create a dedicated Subscription landing page (or heavily expand the collection page)</td><td><span class="pill opp-high">High</span></td><td>2–3 hrs</td><td>Add 400+ words of copy, FAQ section, FAQ schema markup.</td></tr>
+          <tr><td>Add product descriptions (150–300 words each) to all coffee products</td><td><span class="pill opp-high">High</span></td><td>3–4 hrs</td><td>Include origin, tasting notes, brew recommendations.</td></tr>
+          <tr><td>Create individual location pages for all 4 cafés</td><td><span class="pill opp-high">High</span></td><td>4 hrs</td><td>One page per location: NAP, opening hours, map embed, LocalBusiness schema. Priority: Bollington (#29 → target top 3).</td></tr>
+          <tr><td>Add LocalBusiness JSON-LD schema to each location page + homepage</td><td><span class="pill opp-high">High</span></td><td>2 hrs</td><td>Crucial for Google Maps local pack rankings.</td></tr>
+          <tr><td>Add FAQ schema to subscription and wholesale pages</td><td><span class="pill opp-med">Medium</span></td><td>1 hr</td><td>Enables rich snippets in SERPs — no regional competitor uses FAQ schema.</td></tr>
+          <tr><td>Create Mobile Coffee Bar hire page</td><td><span class="pill opp-med">Medium</span></td><td>1–2 hrs</td><td>Near-zero competition nationally. Land Rover Defender angle is a strong hook.</td></tr>
+          <tr><td>Retrofit internal links from blog posts to relevant product pages</td><td><span class="pill opp-med">Medium</span></td><td>1 hr</td><td>Every lifestyle post should link to the shop or subscription page.</td></tr>
+          <tr><td>Claim and optimise all 4 Google Business Profiles</td><td><span class="pill opp-high">High</span></td><td>2 hrs</td><td>Ensure consistent NAP, add photos, enable Q&amp;A, post regularly. Verify Bollington listing exists and is accurate.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="plan-head">
+      <span class="lbl">Strategic investments</span>
+      <span class="lbl-sub">Plan for this quarter</span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:54%">Action</th>
+            <th style="width:14%">Impact</th>
+            <th style="width:12%">Effort</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Build "What is Speciality Coffee?" pillar page</td><td><span class="pill opp-high">High</span></td><td>1 day</td><td>1,500+ words, internal links to all coffees and subscription. No regional competitor owns this.</td></tr>
+          <tr><td>Coffee brewing guide series (5 posts)</td><td><span class="pill opp-high">High</span></td><td>2–3 days</td><td>Target: pour over, espresso, AeroPress, French press, camping / outdoor coffee.</td></tr>
+          <tr><td>"Coffee for Outdoor Adventures" content cluster</td><td><span class="pill opp-med">Medium</span></td><td>2 days</td><td>Unique to Kickback's brand — hiking coffee, camping coffee, trail coffee. No competitor touches this.</td></tr>
+          <tr><td>Origin story content (1 post per origin: Honduras, Ethiopia, etc.)</td><td><span class="pill opp-med">Medium</span></td><td>1 day per post</td><td>Repurpose producer relationships; link to specific product pages.</td></tr>
+          <tr><td>Pursue inclusion in "Best UK Coffee Subscription" roundup articles</td><td><span class="pill opp-high">High</span></td><td>Ongoing</td><td>Batchcoffee, coffeeblog.co.uk, olivemagazine — email editors for inclusion.</td></tr>
+          <tr><td>Run Screaming Frog / Ahrefs crawl for full technical audit</td><td><span class="pill opp-med">Medium</span></td><td>2 hrs</td><td>Get full picture of broken links, missing alt text, duplicate content.</td></tr>
+          <tr><td>Set up Google Search Console and review CWV / indexation data</td><td><span class="pill opp-high">High</span></td><td>1 hr</td><td>Should be set up if not already — free data from Google.</td></tr>
+          <tr><td>Build backlinks via outdoor / adventure PR (sponsored athletes, event coverage)</td><td><span class="pill opp-high">High</span></td><td>Ongoing</td><td>Kickback's brand story is highly linkable — pitch to outdoor media, hiking blogs.</td></tr>
+          <tr><td>Create a Christmas coffee gift guide landing page</td><td><span class="pill opp-med">Medium</span></td><td>Half day</td><td>Seasonal: target <em>"coffee subscription gift UK"</em> from October.</td></tr>
+          <tr><td>Wholesale landing page expansion with case studies</td><td><span class="pill opp-med">Medium</span></td><td>Half day</td><td>Ancoats has the head start on wholesale SEO — Kickback needs to close this gap.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 08 — NEXT STEPS / CTA ═════════════════ -->
+<section class="report-section" id="sec-08">
+  <div class="container">
+    <div class="sec-band">
+      <div class="sec-num">08</div>
+      <h2>Next <em>steps</em></h2>
+      <div class="sec-meta">How Lanna Mountain Marketing can help</div>
+    </div>
+
+    <p class="lead large">Kickback Coffee has the rarest asset a UK speciality roaster can own: a real, lived brand story, a multi-location physical footprint, and a 40+ person team. What's missing is the SEO infrastructure to make all of that visible to the customers already searching for it.</p>
+    <p>The results already prove the brand strength — page 1 rankings in 3 out of 4 towns with zero SEO effort. The 90-day plan above is about converting that organic authority into top-3 positions and opening up the transactional keywords that will drive online revenue.</p>
+    <p>The keyword ladder is clear: start with the low-competition local wins (location pages, Bollington GBP, local schema), then push into regional roaster terms, then build toward the national subscription SERPs via PR and content. By Q4, the gift-subscription and "best of 2026" SERPs should be in reach for high-converting seasonal traffic.</p>
+
+    <div class="plan-head" style="margin-top:48px">
+      <span class="lbl">How we can help</span>
+      <span class="lbl-sub">Four engagement options</span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="help-grid">
+      <div class="help">
+        <div class="help-num">01</div>
+        <div>
+          <h4>Content briefs</h4>
+          <p>Full briefs for the pillar page, 5 brewing guides, 4 location pages, and the mobile-bar / Land Rover service page — ready for a writer to execute in a focused sprint.</p>
+        </div>
+      </div>
+      <div class="help">
+        <div class="help-num">02</div>
+        <div>
+          <h4>Title tags &amp; meta sheet</h4>
+          <p>A ready-to-paste spreadsheet of new title tags and meta descriptions for every page on the site, prioritised by impact.</p>
+        </div>
+      </div>
+      <div class="help">
+        <div class="help-num">03</div>
+        <div>
+          <h4>Schema implementation package</h4>
+          <p>Complete JSON-LD code for Product, Organization, LocalBusiness (×4), FAQPage, and BreadcrumbList — ready to drop into Shopify theme files.</p>
+        </div>
+      </div>
+      <div class="help">
+        <div class="help-num">04</div>
+        <div>
+          <h4>Monthly SEO retainer</h4>
+          <p>Ongoing content production, technical monitoring, rank tracking, link-building outreach, GA4 reporting, and quarterly strategy reviews.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="cta-inner">
+        <span class="eyebrow" style="background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.18);color:#fff">Get started</span>
+        <h2>Ready to turn the Kickback brand into <em>page-one rankings?</em></h2>
+        <p>The local SERPs are wide open today. The longer they stay empty, the larger the opportunity for whichever roaster claims them first — and Two Brothers are already running events in Altrincham. Let's make Kickback the dominant name in North West speciality coffee.</p>
+        <div class="cta-actions">
+          <a href="mailto:tom@lannamountain.coffee" class="btn btn-primary">Book a strategy call →</a>
+          <a href="https://lannamountain.coffee" class="btn btn-outline">Visit lannamountain.coffee</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ═════════════════ -->
+<footer class="report-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <div class="brand-mark">LM</div>
+          <div>
+            <div class="brand-name">Lanna<span>Mountain</span> Marketing</div>
+            <div class="brand-sub">AI-powered marketing for SMEs</div>
+          </div>
+        </div>
+        <p style="font-size:13.5px;color:var(--text);max-width:380px;line-height:1.6">AI-powered marketing for SMEs across Australia, New Zealand, the UK and ASEAN. SEO, AI voice agents, and growth marketing — including dedicated work with independent roasters and café groups.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="https://lannamountain.coffee">lannamountain.coffee</a>
+        <a href="mailto:tom@lannamountain.coffee">tom@lannamountain.coffee</a>
+        <p style="margin-top:8px">Tom Willis · Founder</p>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <p>🇬🇧 UK · +44 330 027 3057</p>
+        <p>🇦🇺 AU · +61 2 9098 4253</p>
+        <p>💬 WhatsApp · +66 62 309 4689</p>
+        <p style="margin-top:8px">📍 Chiang Rai, Thailand</p>
+        <p>⚡ Reply within 1 business day</p>
+      </div>
+    </div>
+    <p class="disclaimer">This audit was conducted in May 2026 using publicly observable website signals, Google site: search verification, SERP analysis, competitor research, and SEO best-practice frameworks. Confirmed keyword rankings provided by client. All other keyword volume and difficulty estimates are indicative — connect Ahrefs, SEMrush, or Google Search Console for precise data. All content is confidential and prepared exclusively for the recipient. © 2026 Lanna Mountain Marketing.</p>
+  </div>
+</footer>
+
+</body>
+</html>

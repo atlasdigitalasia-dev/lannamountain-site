@@ -1,0 +1,984 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Voice Agent Demo — Lanna Mountain</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <!-- Vapi SDK loaded dynamically in initVapi() below -->
+
+  <style>
+    /* ── Demo hero — mountain background ── */
+    .demo-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      background-image: url('mountain%20pic.jpg');
+      background-size: cover;
+      background-position: center 55%;
+    }
+    .demo-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(13,31,19,0.88) 0%,
+        rgba(13,31,19,0.65) 45%,
+        rgba(13,31,19,0.92) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    .demo-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ── Headline ── */
+    .demo-headline {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .demo-headline h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+    .demo-headline h1 em {
+      font-style: normal;
+      color: #22A050;
+    }
+    .demo-headline p {
+      font-size: 18px;
+      color: #7FAF8A;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Two-col card grid ── */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    /* ── Demo card ── */
+    .demo-card {
+      background: rgba(20,45,26,0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid #1E4228;
+      border-radius: 20px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1A7A3C, #22A050, transparent);
+      border-radius: 20px 20px 0 0;
+    }
+    .demo-card.is-active {
+      border-color: #22A050;
+    }
+
+    .demo-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #22A050;
+      background: rgba(26,122,60,0.15);
+      border: 1px solid rgba(26,122,60,0.3);
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .demo-card h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .demo-card .card-desc {
+      font-size: 15px;
+      color: #7FAF8A;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* ── State management ── */
+    .demo-state          { display: none; }
+    .demo-state.is-shown { display: block; }
+
+    /* ── Big action button ── */
+    .demo-btn-big {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 17px 24px;
+      background: #1A7A3C;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .demo-btn-big:hover { background: #22A050; transform: translateY(-1px); }
+    .demo-btn-big svg   { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── End call button ── */
+    .demo-btn-end {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: rgba(220,50,50,0.12);
+      color: #ff7070;
+      border: 1px solid rgba(220,50,50,0.3);
+      border-radius: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 16px;
+    }
+    .demo-btn-end:hover { background: rgba(220,50,50,0.22); }
+
+    /* ── Small text button ── */
+    .demo-btn-small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: transparent;
+      color: #7FAF8A;
+      border: 1px solid #1E4228;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .demo-btn-small:hover { border-color: #1A7A3C; color: #22A050; }
+
+    /* ── Mic permission note ── */
+    .permission-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(255,200,50,0.07);
+      border: 1px solid rgba(255,200,50,0.18);
+      border-radius: 8px;
+      padding: 11px 14px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255,210,100,0.75);
+      line-height: 1.5;
+    }
+
+    /* ── Connecting — pulsing rings ── */
+    .connecting-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      padding: 16px 0;
+    }
+    .pulse-rings {
+      position: relative;
+      width: 76px; height: 76px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pulse-ring {
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(26,122,60,0.55);
+      border-radius: 50%;
+      animation: pulse-out 1.8s ease-out infinite;
+    }
+    .pulse-ring:nth-child(2) { animation-delay: 0.6s; }
+    .pulse-ring:nth-child(3) { animation-delay: 1.2s; }
+    @keyframes pulse-out {
+      0%   { transform: scale(0.6); opacity: 0.9; }
+      100% { transform: scale(2.1); opacity: 0;   }
+    }
+    .pulse-center {
+      width: 42px; height: 42px;
+      background: rgba(26,122,60,0.2);
+      border: 2px solid #1A7A3C;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px;
+      z-index: 1;
+    }
+    .connecting-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      color: #7FAF8A;
+    }
+    .dots::after {
+      content: '';
+      animation: dots-anim 1.6s steps(4, end) infinite;
+    }
+    @keyframes dots-anim {
+      0%, 20% { content: '';    }
+      40%      { content: '.';  }
+      60%      { content: '..'; }
+      80%, 100%{ content: '...'; }
+    }
+
+    /* ── Active call — waveform bars ── */
+    .active-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .active-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #22A050;
+    }
+    .active-dot {
+      width: 8px; height: 8px;
+      background: #22A050;
+      border-radius: 50%;
+      animation: blink-dot 1s ease-in-out infinite;
+    }
+    @keyframes blink-dot {
+      0%, 100% { opacity: 1;   }
+      50%       { opacity: 0.2; }
+    }
+    .voice-bars {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 52px;
+    }
+    .voice-bar {
+      width: 5px;
+      border-radius: 3px;
+      background: #1A7A3C;
+      animation: bar-wave 0.9s ease-in-out infinite;
+    }
+    .voice-bar:nth-child(1)  { animation-delay: 0.00s; }
+    .voice-bar:nth-child(2)  { animation-delay: 0.10s; }
+    .voice-bar:nth-child(3)  { animation-delay: 0.20s; }
+    .voice-bar:nth-child(4)  { animation-delay: 0.30s; }
+    .voice-bar:nth-child(5)  { animation-delay: 0.40s; }
+    .voice-bar:nth-child(6)  { animation-delay: 0.30s; }
+    .voice-bar:nth-child(7)  { animation-delay: 0.20s; }
+    .voice-bar:nth-child(8)  { animation-delay: 0.10s; }
+    .voice-bar:nth-child(9)  { animation-delay: 0.00s; }
+    @keyframes bar-wave {
+      0%, 100% { height: 8px;  opacity: 0.35; }
+      50%       { height: 44px; opacity: 1;    }
+    }
+    .active-hint {
+      font-size: 13px;
+      color: rgba(127,175,138,0.7);
+    }
+
+    /* ── Call Me form ── */
+    .callme-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .callme-form input {
+      background: rgba(13,31,19,0.65);
+      border: 1px solid #1E4228;
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .callme-form input:focus { border-color: #1A7A3C; }
+    .callme-form input::placeholder { color: rgba(127,175,138,0.4); }
+    .input-hint {
+      font-size: 12px;
+      color: rgba(127,175,138,0.55);
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    /* ── Phone ringing animation ── */
+    .phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 0;
+    }
+    .phone-icon-anim {
+      font-size: 52px;
+      display: inline-block;
+      animation: phone-ring 0.45s ease-in-out infinite alternate;
+    }
+    @keyframes phone-ring {
+      0%   { transform: rotate(-18deg); }
+      100% { transform: rotate(18deg);  }
+    }
+    .phone-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      color: #7FAF8A;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── Success ── */
+    .success-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+      text-align: center;
+    }
+    .success-tick {
+      width: 64px; height: 64px;
+      background: rgba(26,122,60,0.18);
+      border: 2px solid #1A7A3C;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      animation: pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes pop-in {
+      0%   { transform: scale(0.4); opacity: 0; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+    .success-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .success-sub {
+      font-size: 14px;
+      color: #7FAF8A;
+      line-height: 1.6;
+    }
+
+    /* ── Error ── */
+    .error-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      text-align: center;
+    }
+    .error-icon {
+      width: 58px; height: 58px;
+      background: rgba(220,50,50,0.1);
+      border: 2px solid rgba(220,50,50,0.28);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+    }
+    .error-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .error-sub {
+      font-size: 13px;
+      color: #7FAF8A;
+      line-height: 1.5;
+    }
+
+    /* ── Bottom note ── */
+    .demo-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: rgba(127,175,138,0.65);
+    }
+    .demo-note a {
+      color: #22A050;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .demo-note a:hover { color: #fff; }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .demo-grid  { grid-template-columns: 1fr; }
+      .demo-card  { padding: 28px 22px; }
+      .demo-hero  { padding: 110px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">Lanna<span>Mountain</span></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a class="nav-dropdown-toggle" style="cursor:default;">Services ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="/ai-voice-agents">📞 AI Voice Agents</a></li>
+          <li><a href="/agentic-seo">🤖 Agentic SEO</a></li>
+          <li><a href="/local-seo">📍 Local SEO</a></li>
+          <li><a href="/thailand-tourism">🇹🇭 Thailand Tourism</a></li>
+        </ul>
+      </li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/case-studies">Case Studies</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <div class="nav-social">
+        <a href="https://www.facebook.com/LannaMountain.Marketing/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/lannamountain.marketing/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+      <a class="btn btn-outline" href="/contact">Free audit</a>
+      <a class="btn btn-primary" href="/contact">Book a call</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="/ai-voice-agents">AI Voice Agents</a>
+  <a href="/agentic-seo">Agentic SEO</a>
+  <a href="/local-seo">Local SEO</a>
+  <a href="/thailand-tourism">🇹🇭 Thailand Tourism</a>
+  <a href="/blog">Blog</a>
+  <a href="/case-studies">Case Studies</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+  <a class="btn btn-primary" href="/contact">Book a free call →</a>
+</div>
+
+<!-- ── Demo section ─────────────────────────────────────── -->
+<section class="demo-hero">
+  <div class="demo-hero-inner">
+
+    <!-- Headline -->
+    <div class="demo-headline">
+      <div class="page-hero-tag">● Live AI Demo</div>
+      <h1>Hear our AI voice agent<br/><em>in action.</em></h1>
+      <p>This is exactly what your customers experience. Pick how you'd like to try it — browser or a real call to your phone.</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="demo-grid">
+
+      <!-- ────────────────────────────────
+           CARD 1 — Browser call
+      ──────────────────────────────── -->
+      <div class="demo-card" id="card-browser">
+        <div class="demo-card-badge">🎙️ Instant · No phone needed</div>
+        <h3>Talk Now</h3>
+        <p class="card-desc">Speak directly in your browser. Click start, allow microphone access, and you're live with the AI in seconds.</p>
+
+        <!-- IDLE -->
+        <div class="demo-state is-shown" id="browser-idle">
+          <button class="demo-btn-big" onclick="startBrowserCall()">
+            <svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 1 5 5v6a5 5 0 0 1-10 0V6a5 5 0 0 1 5-5zm-7 11a7 7 0 0 0 13.93 1.29A7 7 0 0 0 19 12h-2a5 5 0 0 1-9.9.85A5 5 0 0 1 7 12H5zm5 9v-2.07A7 7 0 0 1 5.07 14H3a9 9 0 0 0 8 8.94V22h2z"/></svg>
+            Start Conversation
+          </button>
+          <div class="permission-note">
+            💡 Your browser will ask for microphone access — required to speak with the AI.
+          </div>
+        </div>
+
+        <!-- CONNECTING -->
+        <div class="demo-state" id="browser-connecting" style="display:none">
+          <div class="connecting-wrap">
+            <div class="pulse-rings">
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring"></div>
+              <div class="pulse-center">🎙️</div>
+            </div>
+            <div class="connecting-label">Connecting<span class="dots"></span></div>
+          </div>
+        </div>
+
+        <!-- ACTIVE -->
+        <div class="demo-state" id="browser-active" style="display:none">
+          <div class="active-wrap">
+            <div class="active-status">
+              <div class="active-dot"></div>
+              <span id="browser-status-label">AI is listening</span>
+            </div>
+            <div class="voice-bars">
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+              <div class="voice-bar"></div>
+            </div>
+            <p class="active-hint">Speak naturally — ask it anything you like.</p>
+          </div>
+          <button class="demo-btn-end" onclick="endBrowserCall()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            End Call
+          </button>
+        </div>
+
+        <!-- ERROR -->
+        <div class="demo-state" id="browser-error" style="display:none">
+          <div class="error-wrap">
+            <div class="error-icon">⚠️</div>
+            <div class="error-title">Couldn't connect</div>
+            <div class="error-sub">Check your microphone permissions in the browser address bar and try again.</div>
+            <button class="demo-btn-small" onclick="setBrowserState('idle')">Try Again</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────────
+           CARD 2 — We'll call you
+      ──────────────────────────────── -->
+      <div class="demo-card" id="card-callme">
+        <div class="demo-card-badge">📱 We call your number</div>
+        <h3>We'll Call You</h3>
+        <p class="card-desc">Enter your number and our AI agent calls you within seconds. Works on any phone, any country.</p>
+
+        <!-- FORM -->
+        <div class="demo-state is-shown" id="callme-form">
+          <div class="callme-form">
+            <input type="text"  id="caller-name"  placeholder="Your first name (optional)" autocomplete="given-name" />
+            <input type="tel"   id="caller-phone" placeholder="+61 400 000 000" autocomplete="tel" />
+            <button class="demo-btn-big" onclick="requestCall()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+              Call Me Now →
+            </button>
+            <div class="input-hint">Include country code · e.g. +61 Australia · +44 UK · +64 NZ</div>
+          </div>
+        </div>
+
+        <!-- CALLING -->
+        <div class="demo-state" id="callme-calling" style="display:none">
+          <div class="phone-wrap">
+            <div class="phone-icon-anim">📲</div>
+            <div class="phone-label">
+              Placing your call<span class="dots"></span><br/>
+              <span style="font-size:13px; opacity:0.65;">Your phone will ring in a few seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="demo-state" id="callme-success" style="display:none">
+          <div class="success-wrap">
+            <div class="success-tick">✓</div>
+            <div class="success-title">Your phone is ringing!</div>
+            <div class="success-sub">Pick up and speak naturally.<br/>The AI will greet you and take it from there.</div>
+            <button class="demo-btn-small" onclick="setCallMeState('form')" style="margin-top:4px;">Try a different number</button>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div class="demo-state" id="callme-error" style="display:none">
+          <div class="error-wrap">
+            <div class="error-icon">⚠️</div>
+            <div class="error-title" id="callme-error-title">Something went wrong</div>
+            <div class="error-sub" id="callme-error-sub">Please check your number includes the country code and try again.</div>
+            <button class="demo-btn-small" onclick="setCallMeState('form')">Try Again</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /demo-grid -->
+
+    <!-- Arrow pointing down to lead capture -->
+    <p class="demo-note">
+      Impressed? Scroll down to book your free strategy call. ↓
+    </p>
+
+  </div>
+</section>
+
+<!-- ── Lead capture ───────────────────────────────────── -->
+<section id="contact" style="background: var(--bg2); padding: 96px 24px;">
+  <div class="container">
+    <div class="contact-inner">
+
+      <!-- Left: copy -->
+      <div class="contact-info">
+        <span class="section-tag">Get this for your business</span>
+        <h2>Impressed?<br/><em>Let's make it yours.</em></h2>
+        <p>What you just experienced is what your customers would hear every time they call — day or night, in any language. We set it up, train it on your business, and run it for you.</p>
+        <p>Fill in the form and we'll get back to you within one business day with a free strategy session.</p>
+
+        <div class="contact-detail">
+          <div class="contact-icon">🤖</div>
+          <div class="contact-detail-text">
+            <span>What's included</span>
+            <strong>Free 30-min strategy call + AI audit</strong>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">⚡</div>
+          <div class="contact-detail-text">
+            <span>Setup time</span>
+            <strong>Live in as little as 2 weeks</strong>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🌏</div>
+          <div class="contact-detail-text">
+            <span>Markets</span>
+            <strong>Australia · NZ · ASEAN · UK</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div id="demoFormSuccess" style="display:none;padding:32px;text-align:center;background:rgba(26,122,60,0.15);border:1px solid rgba(26,122,60,0.4);border-radius:12px;">
+        <div style="font-size:36px;margin-bottom:12px;">✓</div>
+        <h3 style="color:#22A050;margin-bottom:8px;">Message sent!</h3>
+        <p style="color:rgba(255,255,255,0.7);">We'll be in touch within 1 business day.</p>
+      </div>
+      <form id="demoContactForm" action="https://formspree.io/f/mvzvgpzv" method="POST">
+        <input type="hidden" name="source" value="voice-demo" />
+        <div class="form-row">
+          <div>
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="first_name" placeholder="Tom" required />
+          </div>
+          <div>
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="last_name" placeholder="Smith" />
+          </div>
+        </div>
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="tom@yourbusiness.com" required />
+        </div>
+        <div>
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+61 400 000 000" />
+        </div>
+        <div>
+          <label for="business">Business type</label>
+          <select id="business" name="business_type">
+            <option value="">Select your industry…</option>
+            <option>Trades &amp; Home Services</option>
+            <option>Healthcare &amp; Allied Health</option>
+            <option>Hospitality &amp; Restaurants</option>
+            <option>Real Estate</option>
+            <option>Professional Services</option>
+            <option>Retail &amp; eCommerce</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">What would the AI handle for your business?</label>
+          <textarea id="message" name="message" placeholder="e.g. Answer after-hours calls, book appointments, qualify leads, handle FAQs in multiple languages…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; font-size:16px; padding:16px;">
+          Book my free strategy call →
+        </button>
+        <p style="font-size: 12px; color: rgba(127,175,138,0.55); text-align: center; margin-top: 10px;">
+          No obligation · We respond within 1 business day
+        </p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">Lanna<span style="color:#22A050">Mountain</span></a>
+        <p>AI-powered marketing for SMEs across Australia, New Zealand, ASEAN and the UK.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/LannaMountain.Marketing/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/lannamountain.marketing/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/ai-voice-agents">AI Voice Agents</a></li>
+          <li><a href="/agentic-seo">Agentic SEO</a></li>
+          <li><a href="/local-seo">Local SEO</a></li>
+          <li><a href="/contact">Free Audit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/case-studies">Case Studies</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Markets</h5>
+        <ul>
+          <li><a href="/contact">Australia</a></li>
+          <li><a href="/contact">New Zealand</a></li>
+          <li><a href="/contact">ASEAN</a></li>
+          <li><a href="/contact">United Kingdom</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LANNA MOUNTAIN MARKETING. All rights reserved.</span>
+      <span>lannamountain.io</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/66623094689?text=Hi%20Lanna%20Mountain%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.47 2.027 7.773L0 32l8.47-2.004A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.748-1.836l-.484-.287-5.024 1.188 1.21-4.893-.315-.502A13.244 13.244 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.927c-.398-.199-2.352-1.16-2.717-1.292-.365-.133-.63-.199-.896.199-.265.398-1.028 1.292-1.26 1.558-.232.265-.464.299-.862.1-.398-.199-1.681-.62-3.202-1.977-1.184-1.056-1.983-2.36-2.215-2.758-.232-.398-.025-.613.174-.812.18-.179.398-.464.597-.697.2-.232.266-.398.399-.664.133-.265.066-.498-.033-.697-.1-.199-.896-2.16-1.228-2.957-.323-.775-.652-.67-.896-.682l-.763-.013c-.265 0-.697.1-1.062.498-.365.398-1.393 1.36-1.393 3.32s1.427 3.851 1.626 4.116c.2.265 2.808 4.287 6.804 6.013.951.41 1.693.655 2.272.839.954.303 1.822.26 2.509.158.765-.114 2.352-.961 2.684-1.889.332-.928.332-1.724.232-1.889-.099-.166-.364-.265-.763-.464z"/>
+  </svg>
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+</a>
+<style>
+  .wa-float { position:fixed; bottom:28px; right:28px; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,0.45); z-index:9999; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s; }
+  .wa-float:hover { transform:scale(1.1); box-shadow:0 6px 24px rgba(37,211,102,0.6); }
+  .wa-tooltip { position:absolute; right:64px; background:#111; color:#fff; font-size:13px; font-family:'Lato',sans-serif; white-space:nowrap; padding:6px 12px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity 0.2s; }
+  .wa-float:hover .wa-tooltip { opacity:1; }
+  @media(max-width:480px){ .wa-float{ bottom:18px; right:18px; width:50px; height:50px; } .wa-tooltip{ display:none; } }
+</style>
+
+<!-- ── Scripts ─────────────────────────────────────────── -->
+<script>
+  /* ── Browser call (Vapi) ── */
+  var VAPI_PUBLIC_KEY  = 'b3f76250-9f22-41e6-be1a-e55b1a13fe14';
+  var VAPI_ASSISTANT_ID = '32fb8ffb-0c87-45f3-b223-496e5ed0575a';
+  var vapi = null;
+
+  /* ── Outbound call (Telnyx native — no Vapi) ── */
+  var TELNYX_ASSISTANT_ID  = 'assistant-85ee2605-dc0f-45dc-a431-d02d16ef40cb';
+  var TELNYX_FROM_NUMBER   = '+12176731406';
+  var TELNYX_CONNECTION_ID = '2941255353154668480';
+
+  /* ── State helpers ── */
+  function showOnly(prefix, ids, active) {
+    ids.forEach(function(s) {
+      var el = document.getElementById(prefix + s);
+      if (!el) return;
+      el.style.display = (s === active) ? 'block' : 'none';
+    });
+  }
+
+  function setBrowserState(state) {
+    showOnly('browser-', ['idle','connecting','active','error'], state);
+    var card = document.getElementById('card-browser');
+    if (card) card.classList.toggle('is-active', state === 'active');
+    if (state === 'idle') {
+      var lbl = document.getElementById('browser-status-label');
+      if (lbl) lbl.textContent = 'AI is listening';
+    }
+  }
+
+  function setCallMeState(state) {
+    showOnly('callme-', ['form','calling','success','error'], state);
+  }
+
+  /* ── Load Vapi SDK via esm.sh (CJS→ESM) ── */
+  function loadVapi() {
+    import('https://esm.sh/@vapi-ai/web@2.5.2')
+      .then(function(m) {
+        var Cls = m.default || m.Vapi || m;
+        if (typeof Cls !== 'function') { console.warn('Vapi SDK unavailable'); return; }
+        window._VapiClass = Cls;
+        wireVapi();
+      })
+      .catch(function(e) { console.warn('Vapi SDK load failed:', e); });
+  }
+
+  function wireVapi() {
+    var Cls = window._VapiClass;
+    if (typeof Cls !== 'function') { console.warn('window._VapiClass not a function'); return; }
+    try {
+      vapi = new Cls(VAPI_PUBLIC_KEY);
+      vapi.on('call-start',   function() { setBrowserState('active'); });
+      vapi.on('call-end',     function() { setBrowserState('idle'); });
+      vapi.on('speech-start', function() {
+        var l = document.getElementById('browser-status-label');
+        if (l) l.textContent = 'AI is speaking';
+      });
+      vapi.on('speech-end',   function() {
+        var l = document.getElementById('browser-status-label');
+        if (l) l.textContent = 'AI is listening';
+      });
+      vapi.on('error', function(e) { console.error('Vapi:', e); setBrowserState('error'); });
+      console.log('Vapi ready');
+    } catch(e) { console.error('wireVapi:', e); }
+  }
+
+  /* ── Fetch phone number ID ── */
+  /* Use the Telnyx-backed number explicitly — avoids grabbing the broken BYO/SIP number */
+  vapiPhoneNumberId = 'af8b322d-9f2a-4648-b8b2-3470c22d8972'; /* +12176731406 Telnyx */
+
+  /* ── Browser call ── */
+  function startBrowserCall() {
+    if (!vapi) {
+      var sub = document.querySelector('#browser-error .error-sub');
+      if (sub) sub.textContent = 'Voice SDK still loading — wait a moment and try again.';
+      setBrowserState('error');
+      return;
+    }
+    setBrowserState('connecting');
+    vapi.start(VAPI_ASSISTANT_ID).catch(function(e) {
+      console.error('vapi.start:', e);
+      setBrowserState('error');
+    });
+  }
+
+  function endBrowserCall() {
+    try { if (vapi) vapi.stop(); } catch(e) {}
+    setBrowserState('idle');
+  }
+
+  /* ── Outbound call ── */
+  function requestCall() {
+    var name  = (document.getElementById('caller-name').value  || '').trim();
+    var raw   = (document.getElementById('caller-phone').value || '').trim();
+    var phone = raw.replace(/[\s\-\(\)]/g, '');
+
+    if (!phone) { document.getElementById('caller-phone').focus(); return; }
+    if (phone[0] !== '+') {
+      callMeErr('Include country code', 'Must start with + e.g. +61 Australia +44 UK +64 NZ');
+      return;
+    }
+    if (phone.replace(/\D/g,'').length < 9) {
+      callMeErr('Number too short', 'Enter full number with country code.');
+      return;
+    }
+
+    setCallMeState('calling');
+
+    fetch('/.netlify/functions/outbound-call', {
+      method : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body   : JSON.stringify({ to: phone, name: name || null })
+    })
+    .then(function(r) {
+      if (!r.ok) return r.json().then(function(e) { throw new Error(e.error || 'Error ' + r.status); });
+      setCallMeState('success');
+    })
+    .catch(function(e) {
+      console.error('outbound:', e);
+      callMeErr('Call failed', e.message || 'Something went wrong — please try again.');
+    });
+  }
+
+  function callMeErr(title, sub) {
+    var t = document.getElementById('callme-error-title');
+    var s = document.getElementById('callme-error-sub');
+    if (t) t.textContent = title;
+    if (s) s.textContent = sub;
+    setCallMeState('error');
+  }
+
+  /* ── Nav ── */
+  var nav = document.getElementById('navbar');
+  if (nav) window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+  var hbg = document.getElementById('hamburger');
+  var mob = document.getElementById('mobileNav');
+  if (hbg && mob) {
+    hbg.addEventListener('click', function() { mob.classList.toggle('open'); });
+    mob.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { mob.classList.remove('open'); });
+    });
+  }
+
+  /* ── Boot ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    setBrowserState('idle');
+    setCallMeState('form');
+    loadVapi();
+  });
+
+  /* ── Demo contact form — AJAX submit, no redirect ── */
+  var demoForm = document.getElementById('demoContactForm');
+  if (demoForm) {
+    demoForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(demoForm);
+      fetch(demoForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res) {
+          if (res.ok) {
+            demoForm.style.display = 'none';
+            document.getElementById('demoFormSuccess').style.display = 'block';
+          }
+        });
+    });
+  }
+</script>
+</body>
+</html>

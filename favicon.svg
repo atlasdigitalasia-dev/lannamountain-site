@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#0D1F13"/>
+  <!-- Back mountain (lighter) -->
+  <polygon points="22,8 30,26 14,26" fill="#145F2E"/>
+  <!-- Front mountain (brand green) -->
+  <polygon points="10,10 22,26 -2,26" fill="#1A7A3C"/>
+  <!-- Snow cap highlight -->
+  <polygon points="10,10 13.5,16 6.5,16" fill="#22A050" opacity="0.6"/>
+</svg>
