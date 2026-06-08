@@ -201,7 +201,7 @@ nav.scrolled {
 }
 /* About page gets the mountain photo as a subtle background */
 .page-hero.mountain-bg {
-  background-image: url('mountain%20pic.jpg');
+  background-image: url('mountain-pic.jpg');
   background-size: cover;
   background-position: center 55%;
   min-height: 100vh;
@@ -323,7 +323,7 @@ nav.scrolled {
   padding: 120px 24px 80px;
   position: relative;
   overflow: hidden;
-  background-image: url('mountain%20pic.jpg');
+  background-image: url('mountain-pic.jpg');
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
