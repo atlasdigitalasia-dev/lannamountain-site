@@ -1,30 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://lannamountain.io/</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agents.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://lannamountain.io/agentic-seo.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://lannamountain.io/local-seo.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://lannamountain.io/thailand-tourism.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/pricing.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/case-studies.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/blog.html</loc><lastmod>2026-06-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/about.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/contact.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-plumbers-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-dental-clinic-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-electricians-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-healthcare-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-real-estate-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/ai-voice-agent-restaurants-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/local-seo-tradies-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/local-seo-dentists-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://lannamountain.io/chiang-mai-ai-marketing.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/bangkok-ai-marketing.html</loc><lastmod>2026-06-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-what-is-agentic-seo.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-google-maps-ranking-thailand.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-ai-voice-agents-thailand-tourism.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-digital-marketing-expat-business-thailand.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-agentic-seo-vs-traditional-seo.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-ai-voice-agent-cost-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://lannamountain.io/blog-missed-calls-small-business-australia.html</loc><lastmod>2026-06-15</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agents.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lannamountain.io/agentic-seo.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lannamountain.io/local-seo.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lannamountain.io/thailand-tourism.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/pricing.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/case-studies.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/blog.html</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/about.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/contact.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-plumbers-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-dental-clinic-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-electricians-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-healthcare-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-real-estate-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/ai-voice-agent-restaurants-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/local-seo-tradies-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/local-seo-dentists-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lannamountain.io/chiang-mai-ai-marketing.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/bangkok-ai-marketing.html</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-what-is-agentic-seo.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-google-maps-ranking-thailand.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-ai-voice-agents-thailand-tourism.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-digital-marketing-expat-business-thailand.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-agentic-seo-vs-traditional-seo.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-ai-voice-agent-cost-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/blog-missed-calls-small-business-australia.html</loc><lastmod>2026-06-16</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+
+  <!-- Resources index -->
+  <url><loc>https://lannamountain.io/resources/</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Cluster 1: Marketing in Thailand as a Foreigner -->
+  <url><loc>https://lannamountain.io/resources/marketing-thailand-foreigner/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/expat-business-bangkok/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/english-marketing-tourism-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/google-maps-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/facebook-google-line-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/english-website-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 2: Local SEO in Thailand -->
+  <url><loc>https://lannamountain.io/resources/local-seo-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/google-business-profile-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/nap-consistency-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/google-reviews-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/respond-google-reviews-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-clinics-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-gyms-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-spas-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-chiang-mai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-restaurants-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-bangkok/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-phuket/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 3: AI Voice Agents -->
+  <url><loc>https://lannamountain.io/resources/ai-voice-agents-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-phone-answering-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-booking-restaurants-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-receptionist-clinics-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/multilingual-ai-voice-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-follow-up-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/missed-calls-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 4: Tourism Marketing -->
+  <url><loc>https://lannamountain.io/resources/tourism-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/seo-tour-operators-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/hotel-seo-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/boutique-hotel-chiang-mai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/muay-thai-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/cooking-class-seo-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ethical-tourism-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 5: SEO Strategy -->
+  <url><loc>https://lannamountain.io/resources/seo-small-business-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/website-not-ranking-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/seo-timeline-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/seo-vs-google-ads-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/keyword-research-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/agentic-seo/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-seo-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 6: Industry-Specific -->
+  <url><loc>https://lannamountain.io/resources/ai-marketing-thailand-industries/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/plumber-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/dentist-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/accountant-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/real-estate-seo-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/language-school-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/law-firm-marketing-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 7: Agency Selection -->
+  <url><loc>https://lannamountain.io/resources/marketing-cost-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/seo-cost-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/choose-marketing-agency-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/agency-vs-freelancer-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/ai-marketing-tools-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/hire-marketing-agency-thailand/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Cluster 8: Chiang Rai -->
+  <url><loc>https://lannamountain.io/resources/digital-marketing-chiang-rai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/local-seo-chiang-rai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/customers-chiang-rai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/coffee-shop-chiang-rai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/chiang-rai-vs-chiang-mai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lannamountain.io/resources/tourism-marketing-chiang-rai/</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
