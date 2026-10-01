@@ -53,8 +53,8 @@
     "name": "Lanna Mountain Marketing",
     "legalName": "Atlas International Co., Ltd",
     "url": "https://lannamountain.io",
-    "telephone": "+66 2964878",
-    "email": "nongluck@lannamountain.io",
+    "telephone": "+66 62 309 4689",
+    "email": "hello@lannamountain.io",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "184 Moo 11, Mae Ka",
@@ -65,7 +65,7 @@
     },
     "employee": [
       { "@type": "Person", "name": "Nongluck Sophana", "jobTitle": "CEO / Director", "email": "nongluck@lannamountain.io", "telephone": "+66 2964878" },
-      { "@type": "Person", "name": "Tom Willis", "jobTitle": "Founder & Sales Manager" }
+      { "@type": "Person", "name": "Tom Willis", "jobTitle": "Founder & Sales Manager", "email": "tom@lannamountain.io", "telephone": "+66 62 309 4689" }
     ]
   }
   </script>
@@ -136,24 +136,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <style>
-  .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:960px;margin:0 auto}
-  .team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;text-align:center;transition:transform .2s,border-color .2s}
-  .team-card:hover{transform:translateY(-4px);border-color:var(--green-lt)}
-  .team-photo{width:150px;height:150px;border-radius:50%;margin:0 auto 22px;overflow:hidden;border:3px solid var(--green-lt);background:linear-gradient(135deg,var(--green-dim),var(--green));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:48px;font-weight:700;color:#fff;letter-spacing:1px}
-  .team-photo{position:relative}.team-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-  .team-card h3{font-family:var(--font-head);font-size:24px;color:var(--white);margin:0 0 6px}
-  .team-role{color:var(--green-lt);font-family:var(--font-head);font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
-  .team-card p{color:var(--text);line-height:1.7;margin:0 0 20px}
-  .team-contact{list-style:none;padding:18px 0 0;margin:0;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
-  .team-contact a{color:var(--muted);text-decoration:none;transition:color .2s}
-  .team-contact a:hover{color:var(--green-lt)}
-  .company-box{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px}
-  .company-box h3{font-family:var(--font-head);color:var(--white);font-size:22px;margin:0 0 14px}
-  .company-box address{font-style:normal;color:var(--text);line-height:1.8}
-  .company-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
-  .company-box ul a{color:var(--green-lt);text-decoration:none}
-  .company-box ul a:hover{text-decoration:underline}
-  @media(max-width:760px){.team-grid,.company-box{grid-template-columns:1fr}.company-box{padding:28px 22px}}
+  .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:980px;margin:0 auto;align-items:stretch}
+  .team-card{position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:44px 32px 32px;text-align:center;transition:transform .2s,border-color .2s,box-shadow .2s}
+  .team-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--green-dim),var(--green-lt))}
+  .team-card:hover{transform:translateY(-4px);border-color:var(--green-lt);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+  .team-photo{position:relative;width:160px;height:160px;border-radius:50%;margin:0 auto 24px;overflow:hidden;border:3px solid var(--green-lt);box-shadow:0 0 0 6px rgba(34,160,80,.15);background:linear-gradient(135deg,var(--green-dim),var(--green));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:52px;font-weight:700;color:#fff;letter-spacing:1px}
+  .team-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .team-card h3{font-family:var(--font-head);font-size:26px;color:var(--white);margin:0 0 8px}
+  .team-role{display:inline-block;align-self:center;color:var(--green-lt);background:rgba(34,160,80,.12);border:1px solid rgba(34,160,80,.3);border-radius:999px;padding:5px 14px;font-family:var(--font-head);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+  .team-card p{color:var(--text);line-height:1.75;margin:0 0 26px}
+  .team-contact{list-style:none;padding:0;margin:auto 0 0;display:flex;flex-direction:column;gap:8px;text-align:left}
+  .team-contact a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:15px;line-height:1.3;transition:border-color .2s,background .2s,color .2s}
+  .team-contact a:hover{border-color:var(--green-lt);background:rgba(34,160,80,.1);color:#fff}
+  .team-contact .ico{width:18px;height:18px;flex:none;color:var(--green-lt)}
+  .team-contact .tag{flex:none;min-width:40px;text-align:center;padding:3px 8px;border-radius:5px;background:var(--green-dim);color:#fff;font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:.08em}
+  .team-contact .tag.wa{background:#1f9d55}
+  .contact-note{font-size:12.5px;color:var(--muted);margin:2px 4px 6px;text-align:left}
+  .team-card .btn{margin-top:20px;align-self:stretch;justify-content:center;text-align:center}
+  .local-numbers{max-width:980px;margin:32px auto 0;text-align:center}
+  .local-numbers h3{font-family:var(--font-head);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+  .local-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .local-grid a{display:flex;align-items:center;justify-content:center;gap:14px;padding:18px 12px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:var(--white);text-decoration:none;font-family:var(--font-head);font-size:16px;font-weight:600;transition:border-color .2s,transform .2s}
+  .local-grid a:hover{border-color:var(--green-lt);transform:translateY(-2px)}
+  .local-grid .tag{padding:4px 10px;border-radius:5px;background:var(--green-dim);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em}
+  .company-box{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:40px}
+  .company-box h3{font-family:var(--font-head);color:var(--white);font-size:22px;margin:0 0 16px}
+  .company-addr{display:flex;gap:14px;align-items:flex-start}
+  .company-addr .ico{width:22px;height:22px;flex:none;color:var(--green-lt);margin-top:3px}
+  .company-box address{font-style:normal;color:var(--text);line-height:1.85;font-size:16px}
+  @media(max-width:900px){.local-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:760px){.team-grid,.company-box,.local-grid{grid-template-columns:1fr}.company-box{padding:28px 20px;gap:24px}.team-card{padding:40px 20px 24px}}
 </style>
 
 <!-- ── Page Hero ───────────────────────────────────── -->
@@ -185,9 +197,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="team-role" itemprop="jobTitle">CEO / Director</div>
         <p>Nongluck leads Lanna Mountain Marketing and its parent company, Atlas International Co., Ltd, overseeing company direction, operations and client relationships.</p>
         <ul class="team-contact">
-          <li>📞 <a href="tel:+662964878" itemprop="telephone">+66 2964878</a></li>
-          <li>✉️ <a href="mailto:nongluck@lannamountain.io" itemprop="email">nongluck@lannamountain.io</a></li>
+          <li><a href="tel:+662964878" itemprop="telephone"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.19a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z"/></svg>+66 2964878</a></li>
+          <li><a href="mailto:nongluck@lannamountain.io" itemprop="email"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>nongluck@lannamountain.io</a></li>
         </ul>
+        <a href="mailto:nongluck@lannamountain.io" class="btn btn-outline">Email Nongluck</a>
       </article>
 
       <article class="team-card" itemscope itemtype="https://schema.org/Person">
@@ -196,11 +209,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="team-role" itemprop="jobTitle">Founder &amp; Sales Manager</div>
         <p>Tom founded Lanna Mountain to give small businesses access to enterprise-grade AI marketing — voice agents, agentic SEO and local SEO. He looks after new client enquiries and strategy calls.</p>
         <ul class="team-contact">
-          <li>📅 <a href="contact.html">Book a call with Tom</a></li>
-          <li>💬 <a href="https://wa.me/66623094689" target="_blank" rel="noopener">Message on WhatsApp</a></li>
+          <li><a href="mailto:tom@lannamountain.io" itemprop="email"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>tom@lannamountain.io</a></li>
+          <li><a href="https://wa.me/66623094689" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.3zM12 21.7a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4A9.9 9.9 0 1 1 12 21.7zm5.4-7.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.2 2.8 6.4 6.4 0 0 0 1.4 3.4 14.7 14.7 0 0 0 5.6 4.9c2.1.9 2.9.9 3.9.8.6-.1 1.8-.7 2-1.5s.3-1.4.2-1.5-.3-.2-.6-.3z"/></svg>WhatsApp +66 62 309 4689</a></li>
         </ul>
+        <a href="contact.html" class="btn btn-primary">Book a call with Tom</a>
       </article>
 
+    </div>
+
+    <div class="local-numbers">
+      <h3>Call Tom at local rates</h3>
+      <div class="local-grid">
+        <a href="tel:+66623094689"><span class="tag">TH</span><span>+66 62 309 4689</span></a>
+        <a href="tel:+443300273057"><span class="tag">UK</span><span>+44 330 0273 057</span></a>
+        <a href="tel:+61290984253"><span class="tag">AU</span><span>+61 29 098 4253</span></a>
+        <a href="tel:+6498862864"><span class="tag">NZ</span><span>+64 9 886 2864</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -215,16 +239,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="company-box">
       <div>
         <h3>Atlas International Co., Ltd</h3>
-        <address>
-          184 Moo 11, Mae Ka,<br/>
-          Fang, Chiang Mai<br/>
-          Thailand 50110
-        </address>
+        <div class="company-addr">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <address>
+            184 Moo 11, Mae Ka,<br/>
+            Fang, Chiang Mai<br/>
+            Thailand 50110
+          </address>
+        </div>
       </div>
-      <ul>
-        <li>📞 <a href="tel:+662964878">+66 2964878</a></li>
-        <li>✉️ <a href="mailto:nongluck@lannamountain.io">nongluck@lannamountain.io</a></li>
-        <li>🌐 <a href="https://lannamountain.io">lannamountain.io</a></li>
+      <ul class="team-contact">
+        <li><a href="tel:+66623094689"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.19a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92z"/></svg>+66 62 309 4689</a></li>
+        <li><a href="mailto:hello@lannamountain.io"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>hello@lannamountain.io</a></li>
+        <li><a href="https://lannamountain.io"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>lannamountain.io</a></li>
       </ul>
     </div>
   </div>
