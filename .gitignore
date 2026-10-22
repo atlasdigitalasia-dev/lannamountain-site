@@ -3,6 +3,17 @@ agency-dashboard-backend/.env
 agency-dashboard-backend/tokens.json
 agency-dashboard-backend/*.json
 .fb_credentials.json
+# Any folder: env files, MCP config, OAuth tokens, user hashes, zipped deploys/prod snapshots
+.env
+*.env
+.mcp.json
+tokens.json
+users.json
+*.zip
+deploy-stage2/
+agency-dashboard-backend/prod-data/
+agency-dashboard-backend/prod-rank-overview/
+lanna-mountain-chatbot/data/
 
 # Backend (keep out of site repo)
 agency-dashboard-backend/node_modules/

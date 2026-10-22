@@ -1,6 +1,13 @@
 Options -MultiViews
 RewriteEngine On
 
+# This repo deploys straight into public_html, so keep repo internals off the web:
+# backend source folders, docs (*.md) and dotfiles (.gitignore etc.)
+RewriteRule ^(agency-dashboard-backend|be-li-tailor-chatbot)(/|$) - [F,L]
+RewriteRule \.md$ - [F,L]
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteRule (^|/)\. - [F,L]
+
 # Pricing page removed 2026-10-04 — send old URLs to Contact
 RewriteRule ^pricing(\.html)?/?$ /contact [R=301,L]
 
